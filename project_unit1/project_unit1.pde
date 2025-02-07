@@ -6,10 +6,16 @@ void setup()
   // Canvas creation
   size(1000, 600);
   
+  background(3, 177, 255); // Sky
+  
+  // Generate a picture itself
+  picture();
   // Background
   //background(3, 177, 255); // Sky
   
 }
+
+int grassGenerated = 0;
 
 void picture()
 {
@@ -49,6 +55,7 @@ void picture()
   rect(0, 431, 1000, 600);
   noStroke();
   
+  randgrass();
   
   // Draw a robot
   robot();
@@ -104,13 +111,36 @@ void robot()
 void draw() 
 {
   
-  background(3, 177, 255); // Sky
   
-  // Generate a picture itself
-  picture();
   
   // Mouse coordinates
-  coordinatesText();
+  //coordinatesText();
+}
+
+int ygrass = 420;
+
+void randgrass()
+{
+  for (int x = 1; x != 1000; x++)
+  {
+    int randnum = int(random(1, 50));
+    if(randnum == 1)
+    {
+      fill(68, 201, 67); 
+      rect(x, ygrass, 4, 10);
+    }
+  }
+  grassGenerated = 1;
+  ifgrass();
+}
+
+void ifgrass()
+{
+  if(ygrass <= 800)
+  {
+    ygrass += 7;
+    randgrass();
+  }
 }
 
 void coordinatesText()
